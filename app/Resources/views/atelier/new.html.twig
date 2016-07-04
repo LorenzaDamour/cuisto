@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section id="newDons">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+
+        {{ form_start(form) }}
+        <div class="form-group">
+          {{ form_label(form.nom) }}
+          {{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
+          {{ form_errors(form.nom) }}
+        </div>
+
+        <div class="form-group">
+          {{ form_label(form.equipements) }}
+          {{ form_widget(form.equipements, {'attr': {'class':'form-control'}}) }}
+          {{ form_errors(form.equipements) }}
+        </div>
+
+        <div class="form-group">
+          {{ form_label(form.ingredients) }}
+          {{ form_widget(form.ingredients, {'attr': {'class':'form-control'}}) }}
+          {{ form_errors(form.ingredients) }}
+        </div>
+
+        <div class="text-center">
+          <input id="envoyer" type="submit" value="Créer" />
+        </div>
+        {{ form_end(form) }}
+        <!-- <a href="{{ path('dons_index') }}">Voir la liste des dons</a> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
