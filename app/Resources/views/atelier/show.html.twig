@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section id="showAtelier">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+    <!-- <h1>Votre Dons</h1> -->
+
+    <p class="text-center" style="margin-bottom:50px;">
+      Votre atelier a été ajouté.
+    </p>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Equipements</th>
+          <th>Ingrédients</th>
+          <th>Tarif</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ atelier.nom }}</td>
+          <td>{{ atelier.equipements }}</td>
+          <td>{{ atelier.ingredients}}</td>
+          <td>{{ atelier.tarif}}</td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</section>
+  <!--  <ul>
+        <li>
+            <a href="{{ path('atelier_index') }}">Voir la liste des dons</a>
+        </li>
+        <li>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul> -->
+{% endblock %}

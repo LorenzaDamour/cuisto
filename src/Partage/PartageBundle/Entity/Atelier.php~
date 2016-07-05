@@ -185,28 +185,4 @@ class Atelier
     {
         return $this->users;
     }
-
-    /**
-     * Set user
-     *
-     * @param \Partage\PartageBundle\Entity\Users $user
-     *
-     * @return Atelier
-     */
-    public function setUser(\Partage\PartageBundle\Entity\Users $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Partage\PartageBundle\Entity\Users
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }

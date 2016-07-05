@@ -26,8 +26,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-      {% if is_granted('ROLE_CUISINE') %}
-        <li><a href="/atelier/new"><i class="fa fa-edit" aria-hidden="true"></i> Créer un atelier</a></li>
+      {% if is_granted('ROLE_USER')%}  <li><a href="/new"><i class="fa fa-edit" aria-hidden="true"></i> Créer un atelier</a></li>
       {% endif %}
 
       </ul>
@@ -36,7 +35,7 @@
       <ul class="nav navbar-nav navbar-right">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <li>
-          <a href="/profile" title="Profil"><i class="fa fa-user" aria-hidden="true"></i> {{ app.user.username }}</a>
+          <a href="/profile" title="Profil"><i class="fa fa-user" aria-hidden="true"></i> Bienvenue {{ app.user.username }}</a>
         </li>
 
 

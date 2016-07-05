@@ -1,0 +1,21 @@
+<section id="showAtelier">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+<h1 class="text-center">Liste des ateliers</h1>
+
+{% for atelier in ateliers %}
+<article id="articleAteliers">
+  <div class="row">
+    <div class="col-md-12">
+    <h3>{{ atelier.nom }} | {{ atelier.equipements }}</h3>
+    <p>{{ atelier.ingredients }} | {{ atelier.tarif}}</p>
+
+      <a class="interesse" href="{{ path('atelier_show', { 'id': atelier.id }) }}"><i class="fa fa-heart" aria-hidden="true"></i>
+ Intéressé</a>
+    </div>
+  </div>
+</article>
+</section>
+
+{% endfor %}
