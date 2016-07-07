@@ -56,6 +56,15 @@ class Atelier
      */
 
      private $user;
+
+
+
+
+     /**
+  * participation aux atelier
+  * @ORM\ManyToMany(targetEntity="Users", inversedBy="atelierassiste")
+  */
+  private $assisteAtelier;
     /**
      * Get id
      *
@@ -208,5 +217,47 @@ class Atelier
     public function getUser()
     {
         return $this->user;
+    }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->assisteAtelier = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add assisteAtelier
+     *
+     * @param \Partage\PartageBundle\Entity\Users $assisteAtelier
+     *
+     * @return Atelier
+     */
+    public function addAssisteAtelier(\Partage\PartageBundle\Entity\Users $assisteAtelier)
+    {
+        $this->assisteAtelier[] = $assisteAtelier;
+
+        return $this;
+    }
+
+    /**
+     * Remove assisteAtelier
+     *
+     * @param \Partage\PartageBundle\Entity\Users $assisteAtelier
+     */
+    public function removeAssisteAtelier(\Partage\PartageBundle\Entity\Users $assisteAtelier)
+    {
+        $this->assisteAtelier->removeElement($assisteAtelier);
+    }
+
+    /**
+     * Get assisteAtelier
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAssisteAtelier()
+    {
+        return $this->assisteAtelier;
     }
 }

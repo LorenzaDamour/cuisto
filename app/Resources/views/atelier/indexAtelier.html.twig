@@ -1,21 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
 <section id="showAtelier">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-<h1 class="text-center">Liste des ateliers</h1>
-
-{% for atelier in ateliers %}
-<article id="articleAteliers">
-  <div class="row">
-    <div class="col-md-12">
-    <h3>{{ atelier.nom }} | {{ atelier.equipements }}</h3>
-    <p>{{ atelier.ingredients }} | {{ atelier.tarif}}</p>
-
-      <a class="interesse" href="{{ path('atelier_show', { 'id': atelier.id }) }}"><i class="fa fa-heart" aria-hidden="true"></i>
- Intéressé</a>
-    </div>
+        <h1 class="text-center">Liste des ateliers</h1>
+      </div>
   </div>
+  </div>
+
+{% for atelier in atelier %}
+<article id="articleAteliers">
+  <div class="container">
+
+  <div class="row">
+    <div class="col-md-2">{{ atelier.nom }}</div>
+    <div class="col-md-2">{{ atelier.equipements }}</div>
+    <div class="col-md-2">{{ atelier.ingredients }}</div>
+    <div class="col-md-2">{{ atelier.tarif}}</div>
+    <div class="col-md-4"><a href= "{{ path ('atelier_show' ,{'id': atelier.id}) }}/participation"><input type="button" name="name" value="participer"></a></div>
+</div>
+</div>
 </article>
 </section>
 
 {% endfor %}
+{% endblock %}

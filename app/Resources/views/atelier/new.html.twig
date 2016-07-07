@@ -25,6 +25,12 @@
           {{ form_errors(form.ingredients) }}
         </div>
 
+        <div class="form-group">
+          {{ form_label(form.tarif) }}
+          {{ form_widget(form.tarif, {'attr': {'class':'form-control'}}) }}
+          {{ form_errors(form.tarif) }}
+        </div>
+
         <div class="text-center">
           <input id="envoyer" type="submit" value="Créer" />
         </div>

@@ -59,6 +59,12 @@ class Users extends BaseUser
     protected $atelier;
 
 
+    /**
+      * atelier demandé par l'utilisateur.
+      * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="atelierassiste")
+      */
+      protected $assisteAtelier;
+
     public function __construct()
         {
             parent::__construct();
@@ -195,5 +201,39 @@ class Users extends BaseUser
     public function getAtelier()
     {
         return $this->atelier;
+    }
+
+    /**
+     * Add assisteAtelier
+     *
+     * @param \Partage\PartageBundle\Entity\Atelier $assisteAtelier
+     *
+     * @return Users
+     */
+    public function addAssisteAtelier(\Partage\PartageBundle\Entity\Atelier $assisteAtelier)
+    {
+        $this->assisteAtelier[] = $assisteAtelier;
+
+        return $this;
+    }
+
+    /**
+     * Remove assisteAtelier
+     *
+     * @param \Partage\PartageBundle\Entity\Atelier $assisteAtelier
+     */
+    public function removeAssisteAtelier(\Partage\PartageBundle\Entity\Atelier $assisteAtelier)
+    {
+        $this->assisteAtelier->removeElement($assisteAtelier);
+    }
+
+    /**
+     * Get assisteAtelier
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAssisteAtelier()
+    {
+        return $this->assisteAtelier;
     }
 }

@@ -11,6 +11,23 @@ use Partage\PartageBundle\Form\AtelierType;
 
 class AtelierController extends Controller
 {
+  /**
+ * Lists all Dons entities.
+ *
+ * @Route("/atelier", name="atelier_index")
+ * @Method("GET")
+ */
+ public function indexAction()
+ {
+   $em = $this->getDoctrine()->getManager();
+   $atelier = $em->getRepository('PartagePartageBundle:Atelier')->findAll();
+   $user = $this->getUser();
+
+     return $this->render('atelier/indexAtelier.html.twig', array(
+       'atelier' => $atelier,
+     ));
+
+ }
 
   /**
    * Creates a new Atelier entity.

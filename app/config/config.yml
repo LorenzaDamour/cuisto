@@ -40,12 +40,16 @@ fos_user:
     registration:
         form:
             type: Partage\PartageBundle\Form\UsersType
+
 # Twig Configuration
 twig:
+
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+twig:
+    form:
+        resources: ['bootstrap_3_layout.html.twig']
 
-  
 # Doctrine Configuration
 doctrine:
     dbal:
