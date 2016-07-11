@@ -19,3 +19,10 @@ article#articleAteliers {
 section#reponseAtelier {
     margin-top: 100px;
 }
+img{
+    width: 100%;
+}
+.carousel-inner{
+    height: 800px;
+}
+
