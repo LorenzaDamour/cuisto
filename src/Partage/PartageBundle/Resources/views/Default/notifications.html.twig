@@ -3,15 +3,15 @@
 
 {% for atelier in atelier %}
 {% for participation in atelier.assisteAtelier %}
-<article id="articleDons">
+<article id="articleAtelier">
   <div class="row">
     <div class="col-md-12">
       <h3>  {{ participation.prenom }} | {{ atelier.nom }}</h3>
 
 
-        <a href="#" class="accepter"><i class="fa fa-check" aria-hidden="true"></i> Accepter</a> |
+        <a href="{{ path ('atelier_accepte', {'id' : atelier.id, 'atelierId':atelier.id }) }}" class="accepter"><i class="fa fa-check" aria-hidden="true"></i> Accepter</a> |
 
-        <a href="#" class="refuser"><i class="fa fa-times" aria-hidden="true"></i> Refuser</a>
+        <a href="{{ path ('atelier_refuse', {'id' : atelier.id, 'atelierId':atelier.id }) }}" class="refuser"><i class="fa fa-times" aria-hidden="true"></i> Refuser</a>
 
       </div>
     </div>

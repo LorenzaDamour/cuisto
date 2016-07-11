@@ -15,7 +15,7 @@ class ParticipationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            
+
             ->add('date')
             ->add('heure')
         ;

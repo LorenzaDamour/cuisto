@@ -8,16 +8,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Partage\PartageBundle\Entity\Atelier;
 use Partage\PartageBundle\Form\AtelierType;
+use Partage\PartageBundle\Entity\StatutAtelier;
 
 /**
-* Dons controller.
+* Atelier controller.
 *
 * @Route("/atelier")
 */
 class AtelierController extends Controller
 {
   /**
- * Lists all Dons entities.
+ * Lists all Atelier entities.
  *
  * @Route("/atelier", name="atelier_index")
  * @Method("GET")
@@ -59,6 +60,45 @@ class AtelierController extends Controller
        'form' => $form->createView(),
      ));
    }
+
+   /**
+  * @Route("/atelier/accepte/{id}/{atelierId}", name="atelier_accepte")
+  * @Method("GET")
+* le cuisinier accepte
+  */
+  public function atelierAccepteAction(Request $request, Atelier $atelier, $atelierId)
+  {
+    $statut = new StatutAtelier();
+    $user = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Users')->find($atelierId);
+    $statut->setUser($user);
+    $statut->setStatut('Accepte');
+    $statut->setAtelier($atelier);
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($statut);
+    $em->flush();
+    return $this->render('PartagePartageBundle:Default:atelierAccepte.html.twig',  array('id' => $atelier->getId()
+  ));
+}
+
+/**
+* @Route("/atelier/refuse/{id}/{atelierId}", name="atelier_refuse")
+* @Method("GET")
+* Le particulier refuse l'atelier
+*/
+public function atelierRefuseAction(Request $request, Atelier $atelier, $atelierId)
+{
+  $statut = new StatutAtelier();
+  $user = $this->getDoctrine()->getManager()->getRepository('PartagePartageBundle:Users')->find($atelierId);
+  $statut->setUser($user);
+  $statut->setStatut('Refuse');
+  $statut->setAtelier($atelier);
+  $em = $this->getDoctrine()->getManager();
+  $em->persist($statut);
+  $em->flush();
+  return $this->render('PartagePartageBundle:Default:atelierRefuse.html.twig',  array(
+    'id' => $atelier->getId(),
+  ));
+}
    /**
 * Finds and displays a Atelier entity.
 *
@@ -80,7 +120,7 @@ public function showAction(Atelier $atelier)
   }
 
   /**
-  * Deletes a Dons entity.
+  * Deletes a Atelier entity.
   *
   * @Route("/{id}", name="atelier_delete")
   * @Method("DELETE")
@@ -98,9 +138,9 @@ public function showAction(Atelier $atelier)
   }
 
   /**
-* Creates a form to delete a Dons entity.
+* Creates a form to delete a Atelier entity.
 *
-* @param Atelier $atelier The Dons entity
+* @param Atelier $atelier The Atelier entity
 *
 * @return \Symfony\Component\Form\Form The form
 */

@@ -57,14 +57,6 @@ class Atelier
 
      private $user;
 
-     /**
-      * @ORM\ManyToOne(targetEntity="Participation", inversedBy="atelier")
-       * @ORM\JoinColumn(name="amateur_id", referencedColumnName="id")
-      */
-
-      private $participation;
-
-
 
 
      /**
@@ -72,6 +64,11 @@ class Atelier
   * @ORM\ManyToMany(targetEntity="Users", inversedBy="atelierassiste")
   */
   private $assisteAtelier;
+
+  /**
+ * @ORM\OneToMany(targetEntity="StatutAtelier", mappedBy="atelier")
+ */
+ private $statut;
     /**
      * Get id
      *
@@ -292,5 +289,39 @@ class Atelier
     public function getParticipation()
     {
         return $this->participation;
+    }
+
+    /**
+     * Add statut
+     *
+     * @param \Partage\PartageBundle\Entity\StatutAtelier $statut
+     *
+     * @return Atelier
+     */
+    public function addStatut(\Partage\PartageBundle\Entity\StatutAtelier $statut)
+    {
+        $this->statut[] = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Remove statut
+     *
+     * @param \Partage\PartageBundle\Entity\StatutAtelier $statut
+     */
+    public function removeStatut(\Partage\PartageBundle\Entity\StatutAtelier $statut)
+    {
+        $this->statut->removeElement($statut);
+    }
+
+    /**
+     * Get statut
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStatut()
+    {
+        return $this->statut;
     }
 }

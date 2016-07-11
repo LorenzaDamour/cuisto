@@ -44,11 +44,7 @@ class Participation
 
      private $user;
 
-     /**
-     * @ORM\OneToMany(targetEntity="Atelier", mappedBy="Participation")
-     */
-     protected $atelier;
-
+  
 
     /**
      * Get id

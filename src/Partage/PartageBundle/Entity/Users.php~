@@ -35,7 +35,7 @@ class Users extends BaseUser
      * @ORM\Column(name="Prenom", type="string", length=255)
      */
     private $prenom;
-    
+
 
 
     protected $email;
@@ -72,6 +72,12 @@ class Users extends BaseUser
       * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="atelierassiste")
       */
       protected $assisteAtelier;
+
+      /**
+ * @ORM\OneToMany(targetEntity="StatutAtelier", mappedBy="users")
+ */
+
+ private $statut;
 
     public function __construct()
         {
@@ -269,5 +275,39 @@ class Users extends BaseUser
     public function getParticipation()
     {
         return $this->participation;
+    }
+
+    /**
+     * Add statut
+     *
+     * @param \Partage\PartageBundle\Entity\StatutAtelier $statut
+     *
+     * @return Users
+     */
+    public function addStatut(\Partage\PartageBundle\Entity\StatutAtelier $statut)
+    {
+        $this->statut[] = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Remove statut
+     *
+     * @param \Partage\PartageBundle\Entity\StatutAtelier $statut
+     */
+    public function removeStatut(\Partage\PartageBundle\Entity\StatutAtelier $statut)
+    {
+        $this->statut->removeElement($statut);
+    }
+
+    /**
+     * Get statut
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStatut()
+    {
+        return $this->statut;
     }
 }
