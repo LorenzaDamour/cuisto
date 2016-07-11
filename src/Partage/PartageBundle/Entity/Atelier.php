@@ -57,6 +57,13 @@ class Atelier
 
      private $user;
 
+     /**
+      * @ORM\ManyToOne(targetEntity="Participation", inversedBy="atelier")
+       * @ORM\JoinColumn(name="amateur_id", referencedColumnName="id")
+      */
+
+      private $participation;
+
 
 
 
@@ -218,7 +225,7 @@ class Atelier
     {
         return $this->user;
     }
-    
+
     /**
      * Constructor
      */
@@ -259,5 +266,31 @@ class Atelier
     public function getAssisteAtelier()
     {
         return $this->assisteAtelier;
+    }
+
+
+
+    /**
+     * Set participation
+     *
+     * @param \Partage\PartageBundle\Entity\Participation $participation
+     *
+     * @return Atelier
+     */
+    public function setParticipation(\Partage\PartageBundle\Entity\Participation $participation = null)
+    {
+        $this->participation = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Get participation
+     *
+     * @return \Partage\PartageBundle\Entity\Participation
+     */
+    public function getParticipation()
+    {
+        return $this->participation;
     }
 }

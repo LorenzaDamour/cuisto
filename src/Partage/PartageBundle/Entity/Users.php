@@ -35,6 +35,7 @@ class Users extends BaseUser
      * @ORM\Column(name="Prenom", type="string", length=255)
      */
     private $prenom;
+    
 
 
     protected $email;
@@ -58,6 +59,13 @@ class Users extends BaseUser
     */
     protected $atelier;
 
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Participation", inversedBy="users")
+          * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+         */
+
+         private $participation;
 
     /**
       * atelier demandé par l'utilisateur.
@@ -235,5 +243,31 @@ class Users extends BaseUser
     public function getAssisteAtelier()
     {
         return $this->assisteAtelier;
+    }
+
+
+
+    /**
+     * Set participation
+     *
+     * @param \Partage\PartageBundle\Entity\Participation $participation
+     *
+     * @return Users
+     */
+    public function setParticipation(\Partage\PartageBundle\Entity\Participation $participation = null)
+    {
+        $this->participation = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Get participation
+     *
+     * @return \Partage\PartageBundle\Entity\Participation
+     */
+    public function getParticipation()
+    {
+        return $this->participation;
     }
 }

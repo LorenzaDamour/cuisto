@@ -15,10 +15,7 @@ class ParticipationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('adresse')
-            ->add('tel')
+            
             ->add('date')
             ->add('heure')
         ;

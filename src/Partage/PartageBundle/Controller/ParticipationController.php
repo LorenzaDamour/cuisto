@@ -11,6 +11,10 @@ use Partage\PartageBundle\Form\ParticipationType;
 
 class ParticipationController extends Controller
 {
+  public function indexAction(){
+  $em = $this->getDoctrine()->getManager();
+  $participation = $em->getRepository('PartagePartageBundle:Participation')->findAll();
+   }
   /**
    * Creates a new Atelier entity.
    *
@@ -24,6 +28,8 @@ class ParticipationController extends Controller
   $form->handleRequest($request);
   $userId = $this->getUser();
   $userId->getId();
+  $participation->setUser($userId);
+
 
   if ($form->isSubmitted() && $form->isValid()) {
     $em = $this->getDoctrine()->getManager();
@@ -35,25 +41,8 @@ class ParticipationController extends Controller
     'participation' => $participation,
     'form' => $form->createView(),
   ));
-}
-
-
-/**
-* @Route("/atelier/{id}", name="atelier_show")
-* @Method("GET")
-*/
- public function showAction(Atelier $atelier)
- {
-   $atelier = new Atelier();
-   $deleteForm = $this->createDeleteForm($atelier);
-  $user = $this->getUser();
-  $userId = $this->getUser();
-   $userId->getId();
-   $atelier->addAssisteAtelier($userId);
-   $em = $this->getDoctrine()->getManager();
-   $em->persist($atelier);
-   $em->flush();
-   return $this->render('atelier/atelierInteresse.html.twig',  array('id' => $atelier->getId()));
 
 }
+
+
 }

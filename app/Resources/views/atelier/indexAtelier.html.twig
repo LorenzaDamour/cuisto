@@ -15,12 +15,12 @@
 <article id="articleAteliers">
   <div class="container">
 
-  <div class="row">
+  <div class="row text-center">
     <div class="col-md-2">{{ atelier.nom }}</div>
     <div class="col-md-2">{{ atelier.equipements }}</div>
     <div class="col-md-2">{{ atelier.ingredients }}</div>
     <div class="col-md-2">{{ atelier.tarif}}</div>
-    <div class="col-md-4"><a href= "{{ path ('atelier_show' ,{'id': atelier.id}) }}/participation"><input type="button" name="name" value="participer"></a></div>
+    <div class="col-md-4"><a href= "{{ path ('atelier_show' ,{'id': atelier.id}) }}"><input type="button" name="name" value="participer"></a></div>
 </div>
 </div>
 </article>

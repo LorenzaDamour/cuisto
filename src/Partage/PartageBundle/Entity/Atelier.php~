@@ -57,6 +57,13 @@ class Atelier
 
      private $user;
 
+     /**
+      * @ORM\ManyToOne(targetEntity="Participation", inversedBy="atelier")
+       * @ORM\JoinColumn(name="amateur_id", referencedColumnName="id")
+      */
+
+      private $participation;
+
 
 
 
@@ -218,5 +225,72 @@ class Atelier
     {
         return $this->user;
     }
-    
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->assisteAtelier = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add assisteAtelier
+     *
+     * @param \Partage\PartageBundle\Entity\Users $assisteAtelier
+     *
+     * @return Atelier
+     */
+    public function addAssisteAtelier(\Partage\PartageBundle\Entity\Users $assisteAtelier)
+    {
+        $this->assisteAtelier[] = $assisteAtelier;
+
+        return $this;
+    }
+
+    /**
+     * Remove assisteAtelier
+     *
+     * @param \Partage\PartageBundle\Entity\Users $assisteAtelier
+     */
+    public function removeAssisteAtelier(\Partage\PartageBundle\Entity\Users $assisteAtelier)
+    {
+        $this->assisteAtelier->removeElement($assisteAtelier);
+    }
+
+    /**
+     * Get assisteAtelier
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAssisteAtelier()
+    {
+        return $this->assisteAtelier;
+    }
+
+
+
+    /**
+     * Set participation
+     *
+     * @param \Partage\PartageBundle\Entity\Participation $participation
+     *
+     * @return Atelier
+     */
+    public function setParticipation(\Partage\PartageBundle\Entity\Participation $participation = null)
+    {
+        $this->participation = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Get participation
+     *
+     * @return \Partage\PartageBundle\Entity\Participation
+     */
+    public function getParticipation()
+    {
+        return $this->participation;
+    }
 }

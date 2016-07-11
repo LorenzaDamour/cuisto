@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% for atelier in atelier %}
+{% for participation in atelier.assisteAtelier %}
+<article id="articleDons">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>  {{ participation.prenom }} | {{ atelier.nom }}</h3>
+
+
+        <a href="#" class="accepter"><i class="fa fa-check" aria-hidden="true"></i> Accepter</a> |
+
+        <a href="#" class="refuser"><i class="fa fa-times" aria-hidden="true"></i> Refuser</a>
+
+      </div>
+    </div>
+  </article>
+
+  {% endfor %}
+  {% endfor %}
+{% endblock %}

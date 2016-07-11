@@ -21,32 +21,7 @@ class Participation
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Nom", type="string", length=255)
-     */
-    private $nom;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Prenom", type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Adresse", type="string", length=255)
-     */
-    private $adresse;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Tel", type="string", length=255)
-     */
-    private $tel;
 
     /**
      * @var date
@@ -62,7 +37,17 @@ class Participation
      */
     private $heure;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="Participation")
+      * @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     */
 
+     private $user;
+
+     /**
+     * @ORM\OneToMany(targetEntity="Atelier", mappedBy="Participation")
+     */
+     protected $atelier;
 
 
     /**
@@ -75,102 +60,6 @@ class Participation
         return $this->id;
     }
 
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Participation
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     *
-     * @return Participation
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * Set adresse
-     *
-     * @param string $adresse
-     *
-     * @return Participation
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-
-    /**
-     * Set tel
-     *
-     * @param string $tel
-     *
-     * @return Participations
-     */
-    public function setTel($tel)
-    {
-        $this->tel = $tel;
-
-        return $this;
-    }
-
-    /**
-     * Get tel
-     *
-     * @return string
-     */
-    public function getTel()
-    {
-        return $this->tel;
-    }
 
 
 
@@ -223,4 +112,69 @@ class Participation
         return $this->heure;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->atelier = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Partage\PartageBundle\Entity\Users $user
+     *
+     * @return Participation
+     */
+    public function setUser(\Partage\PartageBundle\Entity\Users $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Partage\PartageBundle\Entity\Users
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add atelier
+     *
+     * @param \Partage\PartageBundle\Entity\Atelier $atelier
+     *
+     * @return Participation
+     */
+    public function addAtelier(\Partage\PartageBundle\Entity\Atelier $atelier)
+    {
+        $this->atelier[] = $atelier;
+
+        return $this;
+    }
+
+    /**
+     * Remove atelier
+     *
+     * @param \Partage\PartageBundle\Entity\Atelier $atelier
+     */
+    public function removeAtelier(\Partage\PartageBundle\Entity\Atelier $atelier)
+    {
+        $this->atelier->removeElement($atelier);
+    }
+
+    /**
+     * Get atelier
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAtelier()
+    {
+        return $this->atelier;
+    }
 }
